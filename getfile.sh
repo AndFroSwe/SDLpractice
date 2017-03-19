@@ -14,6 +14,10 @@ if [ -f ~/Downloads/$ZIPNAME ]; then
     echo "###Copying makefile...###"
     cp makefile $NAME
     echo "OBJS=$NAME.cpp" >> $NAME/makefile
+    echo "###Fixing includes in source file...###"
+    sed -i 's/<SDL/<SDL2\/SDL/g' $NAME/$NAME.cpp 
+    echo "###Fixing image paths in source file...###"
+    sed -i "s/$NAME\///g" $NAME/$NAME.cpp 
     echo "###Changing folder permissions...###"
     chmod 755 $NAME
     echo "###Done, exiting...###"
